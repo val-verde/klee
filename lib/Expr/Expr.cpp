@@ -17,6 +17,7 @@
 #include "klee/Support/IntEvaluation.h"
 
 #include "llvm/ADT/Hashing.h"
+#include "llvm/ADT/StringExtras.h"
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/raw_ostream.h"
 
@@ -366,7 +367,7 @@ void ConstantExpr::toMemory(void *address) {
 }
 
 void ConstantExpr::toString(std::string &Res, unsigned radix) const {
-  Res = value.toString(radix, false);
+  Res = llvm::toString(value, radix, false);
 }
 
 ref<ConstantExpr> ConstantExpr::Concat(const ref<ConstantExpr> &RHS) {
